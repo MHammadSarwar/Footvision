@@ -170,18 +170,6 @@ Five broadcast clips (`0bfacc_0.mp4`, `2e57b9_0.mp4`, `08fd33_0.mp4`, `573e61_0.
 
 ---
 
-## Known limitations (documented honestly, not glossed over)
-
-A research-style writeup should be honest about the seams. This notebook has a few:
-
-- **Cell 6 (`annotate_football_video`) is dead code.** The annotators are invoked without ever passing `detections` — the function runs without error but draws nothing. Cell 7 reimplements the same logic correctly; Cell 6 was never fixed or removed.
-- **GPU is assumed, not detected, in one place.** Cell 3 hardcodes `ONNXRUNTIME_EXECUTION_PROVIDERS=[CUDAExecutionProvider]`, which will silently fail to provide any speedup (or error, depending on onnxruntime's fallback behavior) on a CPU-only runtime — it isn't conditioned on `torch.cuda.is_available()` the way the SigLIP device selection later in the notebook is.
-- **Ball tracking is present but disabled.** Cell 8 and Cell 27 both contain a commented-out line (`ball_detections = tracker.update_with_detections(...)`) — the ball is detected and drawn per-frame but never assigned a persistent tracker identity, meaning no ball trajectory can be reconstructed across frames as written.
-- **Cell 40 is an orphaned fragment** (`SOURCE_VIDEO_PATH + SOURCE_VIDEO_PATH`, a no-op string concatenation with no assignment) — leftover exploratory cell, not part of the functional pipeline.
-- **API key retrieval is Colab-specific.** `google.colab.userdata.get(...)` ties credential loading to the Colab runtime; it isn't portable to a local or server environment without substituting an environment-variable-based approach.
-- **No confidence/IoU sweep.** Detection confidence (`0.3`) and NMS threshold (`0.5`) are fixed constants, not tuned or validated against held-out footage — reasonable defaults, not derived values.
-
----
 
 ## Tech stack
 
