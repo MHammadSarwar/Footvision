@@ -197,4 +197,4 @@ Five broadcast clips (`0bfacc_0.mp4`, `2e57b9_0.mp4`, `08fd33_0.mp4`, `573e61_0.
 
 ---
 
-*This notebook was built by following Roboflow's sports-analytics tutorial series end to end. It is documented here in full technical detail — including its rough edges — as a record of what the pipeline actually does, stage by stage, rather than a polished sales pitch for it.*
+*This notebook was built by following Roboflow's sports-analytics tutorial series end to end. It is documented here in full technical detail.*
